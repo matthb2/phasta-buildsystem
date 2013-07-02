@@ -1,0 +1,8 @@
+option(NSPRE_PARALLEL "Build the Parallel version of NSPRE" ON)
+option(NSPRE_SERIAL "Build the Serial version of NSPRE" OFF)
+if(NSPRE_PARALLEL)
+	add_subdirectory(src-parallel)
+endif(NSPRE_PARALLEL)
+if(NSPRE_SERIAL)
+	add_subdirectory(src-serial)
+endif(NSPRE_SERIAL)

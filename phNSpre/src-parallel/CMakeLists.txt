@@ -1,0 +1,10 @@
+find_package(MPI REQUIRED)
+find_package(Threads)
+file(GLOB SRC_FILES *.cc *.f *.f90 *.c)
+#MPI_Fortran_INCLUDE_PATH MPI_Fortran_LIBRARIES ?
+include_directories(${MPI_INCLUDE_PATH})
+add_executable(NSpre_Parallel ${SRC_FILES})
+set_target_properties(NSpre_Parallel PROPERTIES LINKER_LANGUAGE Fortran)
+set_target_properties(NSpre_Parallel PROPERTIES HAS_CXX TRUE)
+target_link_libraries(NSpre_Parallel ${MPI_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(NSpre_Parallel phastaIO phMetis)

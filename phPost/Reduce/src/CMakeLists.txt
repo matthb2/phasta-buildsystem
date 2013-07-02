@@ -1,0 +1,10 @@
+find_package(MPI REQUIRED)
+find_package(Threads)
+file(GLOB SRC_FILES *.cc *.f *.f90 *.c)
+#MPI_Fortran_INCLUDE_PATH MPI_Fortran_LIBRARIES ?
+include_directories(${MPI_INCLUDE_PATH})
+add_executable(reduce ${SRC_FILES})
+set_target_properties(reduce PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(reduce PROPERTIES HAS_CXX TRUE)
+target_link_libraries(reduce ${MPI_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(reduce phastaIO )
